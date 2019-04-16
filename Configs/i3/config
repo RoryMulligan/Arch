@@ -182,11 +182,13 @@ bar {
         inactive_workspace #333333 #333333 #888888
         urgent_workspace #2f343a #900000 #ffffff
     }
+    tray_output primary
 }
 
 
 
 # Pulse Audio controls
+exec --no-startup-id i3-msg 'exec /usr/bin/pulseaudio --start'
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
@@ -210,8 +212,8 @@ set_from_resource       $bg         background  #000000
 set_from_resource       $selected   color8      #707070
 set_from_resource       $border     color8      #1234ff
 
-#Disable Title Bar
-for_window [class=".*"] border pixel 2
+#Disable Title Bar **CHANGE BORDER PIXEL OPTION FOR BORDER THICKNESS**
+for_window [class=".*"] border pixel 3
 
 # Wallpaper
 exec --no-startup-id feh --randomize --bg-fill ~/Pictures/Wallpapers/*
@@ -220,12 +222,12 @@ exec --no-startup-id feh --randomize --bg-fill ~/Pictures/Wallpapers/*
 exec synclient VertScrollDelta=-114 synclient HorizScrollDelta=-114
 
 # gaps
-gaps inner 7
+gaps inner 6
 gaps outer 6
 
 ## COLORS:
 #class				border		backgr.		text		indicator
-client.focused			#333333		#2ba926		#cccccc		#000000
+client.focused			#333333		#518f50		#cccccc		#ffc66d
 #                             ^Change this to change border color
 client.focused_inactive		#333333		#333333		#999999		#000000
 client.unfocused		#333333		#333333		#7f7f7f		#000000
@@ -233,4 +235,14 @@ client.urgent			#b20000		#b20000		#cccccc		#000000
 
 
 # Screenshot
- 
+
+# Network Manager Applet
+exec --no-startup-id nm-applet
+
+#Virtual Machine Shit
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# Volumeicon
+exec --no-startup-id volumeicon
+
+
